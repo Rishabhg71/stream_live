@@ -1,0 +1,16 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  app:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    ports:
+      - "5000:8000"
+
+  nginx:
+    image: nginx
+    build:
+      dockerfile: Dockerfile 
+      context: ./nginx 
+    ports:
+      - "1935:1935"
