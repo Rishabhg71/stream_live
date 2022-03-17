@@ -1,12 +1,5 @@
 version: "3.9"  # optional since v1.27.0
 services:
-  app:
-    build:
-      dockerfile: Dockerfile
-      context: .
-    ports:
-      - "5000:8000"
-
   nginx:
     image: nginx
     build:
@@ -14,3 +7,20 @@ services:
       context: ./nginx 
     ports:
       - "1935:1935"
+    volumes:
+      # - "video_stream:/home/rg/Desktop/projects/stream_live/video_feed"
+      - "/home/rg/Desktop/projects/stream_live/video_feed:/home/rg/Desktop/projects/stream_live/video_feed"
+      # - "/home/rg/Desktop/projects/stream_live/video_feed:/home/feed/"
+  app:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    ports:
+      - "5000:8000"
+    volumes:
+      - "video_stream:/home/rg/Desktop/projects/stream_live/video_feed"
+
+
+
+volumes:
+  video_stream: 
